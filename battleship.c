@@ -53,22 +53,35 @@ void placeShip(int **board, battleships *ship){
     char direction = ship->direction;
     int length = ship->length;
     if (direction == 'V'){
-        if(startPostion[0] + length > 9){
+        if(startPostion[0] + length > 9 && startPostion[0] - length < 0){
             printf("error out of bounds");
             exit(1);
         }
-        for (int i = 0; i < length; i++){
+        if(startPostion[0] - length < 0) {
+            for (int i = 0; i < length; i++){
             board[startPostion[0] + i][startPostion[1]] = 1;
+            }
+        }
+        else{
+            for (int i = 0; i < length; i++){
+            board[startPostion[0] - i][startPostion[1]] = 1;
+            }
         }
     }
     else if (direction == 'H'){
-        if(startPostion[1] + length > 9){
+        if(startPostion[1] + length > 9 && startPostion[1] - length < 0){
             printf("error out of bounds");
             exit(1);
         }
-        for (int i = 0; i < length; i++)
-        {
+        if(startPostion[1] - length < 0) {
+            for (int i = 0; i < length; i++){
             board[startPostion[0]][startPostion[1] + i] = 1;
+            }
+        }
+        else{
+            for (int i = 0; i < length; i++){
+            board[startPostion[0]][startPostion[1] - i] = 1;
+            }
         }
     }
 }
