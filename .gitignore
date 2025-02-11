@@ -1,6 +1,7 @@
 .DS_Store
 labs/.DS_Store
 *.DS_Store
+*.json
 # Prerequisites
 *.d
 
