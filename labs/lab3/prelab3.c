@@ -22,7 +22,10 @@ Spaceship** load_fleet(const char* filename){
     for(int i=0; i<NUMBER_OF_CLASSES; i++){
         fleet[i] = malloc(sizeof(int) + sizeof(Spaceship) * cols[i]);
         ((int*)fleet[i])[0] = cols[i];
+        //printf("hidden: %d\n", ((int*)fleet[i])[0]);
+       // printf("address before shift: %p\n", (void*)fleet[i]);
         fleet[i] = ((Spaceship*)(((int*)fleet[i])+1));
+        //printf("address after shift: %p\n", (void*)fleet[i]);
     }
 
     char name[50];
@@ -56,6 +59,7 @@ Spaceship** load_fleet(const char* filename){
         }
         fleet[index_of_class][count_of_class[index_of_class]].speed = speed;
         strncpy(fleet[index_of_class][count_of_class[index_of_class]].name, name, 50);
+        //printShip(fleet[index_of_class][count_of_class[index_of_class]]);
     }
     fclose(fp);
     return fleet;
@@ -87,7 +91,7 @@ char class_with_highest_average_speed(Spaceship** fleet){
     case 2: return 'M'; break;
     case 3: return 'D'; break;
     case 4: return 'V'; break;
-    default: printf("average speed not found"); exit(1); break;
+    default: printf("average speed not found"); break;
     }
     return 'z';
 }
@@ -96,7 +100,25 @@ void free_fleet(Spaceship** fleet){
     //int* p = ((int*)fleet)-1;
     for(int i=0; i<NUMBER_OF_CLASSES; i++){
         fleet[i] = ((Spaceship*)(((int*)fleet[i])-1));
+        //printf("hidden: %d\n", ((int*)fleet[i])[0]);
         free(fleet[i]);
     }
     free(fleet);
+}
+
+void printShip(Spaceship ship){
+    printf("Name: %s\n", ship.name);
+    printf("Speed: %f\n", ship.speed);
+     printf("----------\n");
+}
+
+void printFleet(Spaceship** fleet){
+    for(int i=0; i<NUMBER_OF_CLASSES; i++){
+        for(int j=0; j<(((int*)fleet[i])[-1]); j++){
+            printShip(fleet[i][j]);
+        }
+        if(i != NUMBER_OF_CLASSES-1){
+            printf("\n***NEXT ROW***\n");
+        }
+    }
 }

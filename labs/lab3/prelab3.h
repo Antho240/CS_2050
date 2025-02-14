@@ -12,3 +12,5 @@ typedef struct {
 Spaceship** load_fleet(const char* filename);
 char class_with_highest_average_speed(Spaceship** fleet);
 void free_fleet(Spaceship** fleet);
+void printShip(Spaceship ship);
+void printFleet(Spaceship** fleet);
