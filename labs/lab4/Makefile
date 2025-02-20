@@ -11,7 +11,7 @@ CC = gcc
 
 a.out: $(OBJS)
 	@echo "Linking..."
-	@$(CC) -o $@ $(OBJS)
+	@$(CC) $(LFLAGS) -o $@ $(OBJS)
 	@echo "Done!"
 
 
