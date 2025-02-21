@@ -100,7 +100,7 @@ int freeArray(Employee** employees){
 
 int getSize(Employee* employees){
     if(employees == NULL){
-        print("***Failed to get size***\n");
+        printf("***Failed to get size***\n");
         return 0;
     }
     int size = ((int*)employees)[-1];
