@@ -32,6 +32,7 @@ Employee * readEmployeeArray(FILE *fp){
         employees[i].salary = salary;
         i++;
     }
+    fclose(fp);
     return employees;
 }
 
