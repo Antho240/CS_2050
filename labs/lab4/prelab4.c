@@ -6,17 +6,20 @@ Employee * readEmployeeArray(FILE *fp){
     fp = fopen(filename, "r");
     if(fp == NULL){
         printf("error opening file.\n");
+        fclose(fp);
         return NULL;
     }
     int numEmp = 0;
     if(fscanf(fp, "%d", &numEmp) != 1 || numEmp == 0){
-        printf("number of employees not detected.\n");
+        printf("***Number of employees not detected***\n");
+        fclose(fp);
         return NULL;
     }
     Employee* employees = NULL;
     employees = malloc(sizeof(int) + sizeof(Employee) * numEmp);
     if(employees == NULL){
-        printf("malloc of employee array failed.\n");
+        printf("***Malloc of employee array failed***\n");
+        fclose(fp);
         return NULL;
     }
     ((int*)employees)[0] = numEmp;
