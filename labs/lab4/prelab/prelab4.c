@@ -6,7 +6,7 @@ Employee * readEmployeeArray(FILE *fp){
     fp = fopen(filename, "r");
     if(fp == NULL){
         printf("error opening file.\n");
-        fclose(fp);
+        //fclose(fp);
         return NULL;
     }
     int numEmp = 0;
