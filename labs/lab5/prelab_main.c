@@ -11,6 +11,7 @@ int main(void){
         list = insertAtHead(i, list, &errorCode);
         if(errorCode){
             printf("***insert at head failed***\n");
+            printf("---index of failure %d---\n",i);
             break;
         }
     }
